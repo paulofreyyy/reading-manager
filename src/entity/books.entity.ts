@@ -3,7 +3,7 @@ export interface Book {
     author: string;
     image?: string;
     genre: string;
-    status: 'Concluído' | 'TBR' | 'Lendo' | 'Abandonado';
+    status: 'Concluído' | 'Não lido' | 'Lendo' | 'Abandonado';
     totalPages: number;
     currentPage?: number;
     rating?: number;

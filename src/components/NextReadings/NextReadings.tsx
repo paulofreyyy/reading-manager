@@ -10,7 +10,7 @@ export const NextReadings = () => {
     useEffect(() => {
         // Busca os livros no localStorage ao montar o componente
         const storedBooks = getBooks();
-        const tbrBooks = storedBooks.filter(book => book.status === 'TBR')
+        const tbrBooks = storedBooks.filter(book => book.status === 'Não lido')
         setBooks(tbrBooks);
     }, []);
 

@@ -20,7 +20,7 @@ export const CustomCards = () => {
     // Calcular os valores com base no status dos livros
     const totalBooks = books.length;
     const completedBooks = books.filter(book => book.status === 'Concluído').length;
-    const tbrBooks = books.filter(book => book.status === 'TBR').length;
+    const tbrBooks = books.filter(book => book.status === 'Não lido').length;
     const abandonedBooks = books.filter(book => book.status === 'Abandonado').length;
 
     return (
@@ -43,7 +43,7 @@ export const CustomCards = () => {
                 cardIcon={
                     <LuBookMarked size={30} />
                 }
-                title="TBR"
+                title="Não lidos"
                 cardValue={tbrBooks}
             />
             <CardItem

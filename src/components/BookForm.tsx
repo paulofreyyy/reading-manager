@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { TextField, Button, MenuItem, Box, Drawer, Typography, Tooltip } from '@mui/material';
 import { Book } from '../entity/books.entity';
+import { StatusRadioGroup } from './Inputs/StatusRadioGroup';
 
-interface BookFormProps {
+interface Props {
     addBook: (book: Book) => void;
     toggleDrawer: (newOpen: boolean) => () => void;
     open: boolean;
 }
 
-const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
+export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
     const [title, setTitle] = useState<string>('');
     const [author, setAuthor] = useState<string>('');
     const [genre, setGenre] = useState<string>('');
-    const [status, setStatus] = useState<'Concluído' | 'TBR' | 'Lendo' | 'Abandonado'>('TBR');
+    const [status, setStatus] = useState<'Concluído' | 'Não lido' | 'Lendo' | 'Abandonado'>('Não lido');
     const [totalPages, setTotalPages] = useState<number>(0);
     const [currentPage, setCurrentPage] = useState<number>(0);
     const [image, setImage] = useState<string>('');
@@ -55,65 +56,69 @@ const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
             onClose={toggleDrawer(false)}
         >
             <form onSubmit={handleSubmit}>
-                <Box display="flex" flexDirection="column" gap={2} width={345} p={5}>
+                <Box display="flex" flexDirection="column" gap={2} width={500} p={5}>
                     <Typography variant="h6" fontWeight={600} textAlign='center' mb={2}>Novo livro</Typography>
 
                     {/* Exibe um botão de upload de imagem */}
-                    {!image ? (
-                        <Button
-                            variant="outlined"
-                            component="label"
-                            sx={{
-                                border: '1px dashed gray',
-                                color: 'gray',
-                                height: 100,
-
-                            }}
-                        >
-                            Upload da Imagem
-                            <input
-                                type="file"
-                                accept="image/*"
-                                hidden
-                                onChange={handleImageUpload}
-                            />
-                        </Button>
-                    ) : (
-                        <Box display='flex' flexDirection='column' position="relative" width={150} height={220}>
-                            <Box
-                                component="img"
-                                src={image}
-                                alt="Prévia da Imagem"
-                                width={150}
-                                height={220}
-                                borderRadius={5}
+                    <Box display='flex' justifyContent='center'>
+                        {!image ? (
+                            <Button
+                                variant="outlined"
+                                component="label"
                                 sx={{
-                                    objectFit: "fill",
+                                    border: '1px dashed gray',
+                                    color: 'gray',
+                                    height: 220,
+                                    width: 150,
+                                    borderRadius: 5,
+                                    textAlign: 'center'
                                 }}
-                            />
-
-                            {/* Botão para remover a imagem */}
-                            <Tooltip title='Remover imagem' placement='top'>
-                                <Button
-                                    onClick={handleImageRemove}
-                                    size="small"
+                            >
+                                Selecione a Imagem
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    hidden
+                                    onChange={handleImageUpload}
+                                />
+                            </Button>
+                        ) : (
+                            <Box display='flex' flexDirection='column' position="relative" width={150} height={220}>
+                                <Box
+                                    component="img"
+                                    src={image}
+                                    alt="Prévia da Imagem"
+                                    width={150}
+                                    height={220}
+                                    borderRadius={5}
                                     sx={{
-                                        position: 'absolute',
-                                        top: 5,
-                                        right: 5,
-                                        backgroundColor: '#d1153b',
-                                        color: 'white',
-                                        borderRadius: '50%',
-                                        minWidth: 24,
-                                        height: 24,
+                                        objectFit: "fill",
                                     }}
-                                >
-                                    X
-                                </Button>
-                            </Tooltip>
-                        </Box>
+                                />
 
-                    )}
+                                    {/* Botão para remover a imagem */}
+                                    <Tooltip title='Remover imagem' placement='top'>
+                                        <Button
+                                            onClick={handleImageRemove}
+                                            size="small"
+                                            sx={{
+                                                position: 'absolute',
+                                                top: 5,
+                                                right: 5,
+                                                backgroundColor: '#d1153b',
+                                                color: 'white',
+                                                borderRadius: '50%',
+                                                minWidth: 24,
+                                                height: 24,
+                                            }}
+                                        >
+                                            X
+                                        </Button>
+                                    </Tooltip>
+                                </Box>
+
+                        )}
+                    </Box>
 
                     <TextField
                         label="Título"
@@ -137,18 +142,10 @@ const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
                         fullWidth
                         required
                     />
-                    <TextField
-                        select
-                        label="Status"
-                        value={status}
-                        onChange={(e) => setStatus(e.target.value as 'Concluído' | 'TBR' | 'Lendo' | 'Abandonado')}
-                        fullWidth
-                    >
-                        <MenuItem value="TBR">TBR</MenuItem>
-                        <MenuItem value="Lendo">Lendo</MenuItem>
-                        <MenuItem value="Concluído">Concluído</MenuItem>
-                        <MenuItem value="Abandonado">Abandonado</MenuItem>
-                    </TextField>
+
+                    {/* Componente personalizado para exibição dos status */}
+                    <StatusRadioGroup status={status} setStatus={setStatus} />
+
                     <TextField
                         select
                         label="Tipo de livro"
@@ -184,5 +181,3 @@ const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
         </Drawer>
     );
 };
-
-export default BookForm;

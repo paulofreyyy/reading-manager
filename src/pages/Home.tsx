@@ -7,8 +7,7 @@ import { PageTitle } from '../components/PageTitle';
 import { CustomCards } from '../components/Cards/CustomCards';
 import { BookTable } from '../components/Table/BookTable';
 import { NextReadings } from '../components/NextReadings/NextReadings';
-import BookForm from '../components/BookForm';
-
+import { CreateBookForm } from '../components/BookForm';
 
 export const Home = () => {
     const [books, setBooks] = useState<Book[]>(() => {
@@ -64,7 +63,7 @@ export const Home = () => {
             </Box>
 
             {/* Formulário para criação de novo livro */}
-            <BookForm addBook={addBook} toggleDrawer={toggleDrawer} open={drawerOpen} />
+            <CreateBookForm addBook={addBook} toggleDrawer={toggleDrawer} open={drawerOpen} />
         </Container>
     );
 };
