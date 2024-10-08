@@ -7,6 +7,7 @@ import { Book } from './entity/books.entity';
 import { PageTitle } from './components/PageTitle';
 import { CustomCards } from './components/Cards/CustomCards';
 import { addBook as addBookService, removeBook as removeBookService } from './services/book.service';
+import { NextReadings } from './components/NextReadings/NextReadings';
 
 
 const App: React.FC = () => {
@@ -37,6 +38,15 @@ const App: React.FC = () => {
             {/* Cards */}
             <CustomCards />
 
+
+            {/* Tabela todos os livros */}
+            <BookTable
+                removeBook={removeBook}
+            />
+
+            {/* Próximas Leituras */}
+            <NextReadings />
+
             {/* FAB para incluir novo livro */}
             <Box
                 position='fixed'
@@ -52,11 +62,6 @@ const App: React.FC = () => {
                     <LuPlusCircle size={30} />
                 </Fab>
             </Box>
-
-            {/* Tabela todos os livros */}
-            <BookTable
-                removeBook={removeBook}
-            />
 
             {/* Formulário para criação de novo livro */}
             <BookForm addBook={addBook} toggleDrawer={toggleDrawer} open={drawerOpen} />

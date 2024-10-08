@@ -39,12 +39,12 @@ export const BookTable = ({ removeBook }: Props) => {
     const paginatedBooks = books.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{ mb: 5 }}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     {/* Cabeçalho de informações da tabela */}
                     <TableHeaderInfo
-                        title="Livros lidos"
+                        title="Livros"
                     />
 
                     {/* Cabeçalhos de campos da tabela */}
