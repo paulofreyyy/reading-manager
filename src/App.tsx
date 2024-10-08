@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import BookForm, { Book } from './components/BookForm';
-import BookList from './components/BookList';
+import BookForm from './components/BookForm';
 import { Box, Container, Fab } from '@mui/material';
 import { LuPlusCircle } from "react-icons/lu";
 import { BookTable } from './components/Table/BookTable';
+import { Book } from './entity/books.entity';
 
 const App: React.FC = () => {
     const [books, setBooks] = useState<Book[]>(() => {

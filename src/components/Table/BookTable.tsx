@@ -1,7 +1,7 @@
 import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody } from "@mui/material"
-import { Book } from "../BookForm"
 import { BiShowAlt } from "react-icons/bi";
 import { TableHeaderInfo } from "./TableHeaderInfo";
+import { Book } from "../../entity/books.entity";
 
 interface Props {
     books: Book[]

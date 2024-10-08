@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
 import { TextField, Button, MenuItem, Box, Drawer } from '@mui/material';
+import { Book } from '../entity/books.entity';
 
 interface BookFormProps {
     addBook: (book: Book) => void;
     toggleDrawer: (newOpen: boolean) => () => void;
     open: boolean;
-}
-
-export interface Book {
-    title: string;
-    author: string;
-    genre: string;
-    status: 'lido' | 'não lido';
-    totalPages: number;
-    currentPage: number;
 }
 
 const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {

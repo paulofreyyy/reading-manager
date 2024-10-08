@@ -1,6 +1,6 @@
 import React from 'react';
 import BookItem from './BookItem';
-import { Book } from './BookForm';
+import { Book } from '../entity/books.entity';
 
 interface BookListProps {
     books: Book[];

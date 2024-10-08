@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, Typography, Button, TextField } from '@mui/material';
-import { Book } from './BookForm';
+import { Book } from '../entity/books.entity';
 
 interface BookItemProps {
     book: Book;
