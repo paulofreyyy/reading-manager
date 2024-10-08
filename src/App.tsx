@@ -23,36 +23,6 @@ const App: React.FC = () => {
         localStorage.setItem('books', JSON.stringify(updatedBooks));
     };
 
-    const updateStatus = (title: string) => {
-        const updatedBooks = books.map(book => {
-            if (book.title === title) {
-                return {
-                    ...book,
-                    status: book.status === 'lido' ? 'não lido' as 'lido' | 'não lido' : 'lido' as 'lido' | 'não lido'
-                };
-            }
-            return book;
-        });
-
-        setBooks(updatedBooks);
-        localStorage.setItem('books', JSON.stringify(updatedBooks));
-    };
-
-
-    const updateCurrentPage = (title: string, page: number) => {
-        const updatedBooks = books.map(book =>
-            book.title === title ? { ...book, currentPage: page } : book
-        );
-        setBooks(updatedBooks);
-        localStorage.setItem('books', JSON.stringify(updatedBooks));
-    };
-
-    const removeBook = (title: string) => {
-        const updatedBooks = books.filter(book => book.title !== title);
-        setBooks(updatedBooks);
-        localStorage.setItem('books', JSON.stringify(updatedBooks));
-    };
-
     return (
         <Container>
             <BookForm addBook={addBook} toggleDrawer={toggleDrawer} open={drawerOpen} />
@@ -73,12 +43,7 @@ const App: React.FC = () => {
                 </Fab>
             </Box>
 
-            {/* <BookList
-                books={books}
-                updateStatus={updateStatus}
-                updateCurrentPage={updateCurrentPage}
-                removeBook={removeBook}
-            /> */}
+            {/* Tabela todos os livros */}
             <BookTable
                 books={books}
             />
