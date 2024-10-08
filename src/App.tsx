@@ -4,6 +4,7 @@ import { Box, Container, Fab } from '@mui/material';
 import { LuPlusCircle } from "react-icons/lu";
 import { BookTable } from './components/Table/BookTable';
 import { Book } from './entity/books.entity';
+import { PageTitle } from './components/PageTitle';
 
 const App: React.FC = () => {
     const [books, setBooks] = useState<Book[]>(() => {
@@ -31,7 +32,8 @@ const App: React.FC = () => {
 
     return (
         <Container>
-            <BookForm addBook={addBook} toggleDrawer={toggleDrawer} open={drawerOpen} />
+            {/* Titulo da página */}
+            <PageTitle user='Paulo' />
 
             {/* FAB para incluir novo livro */}
             <Box
@@ -54,6 +56,9 @@ const App: React.FC = () => {
                 books={books}
                 removeBook={removeBook}
             />
+
+            {/* Formulário para criação de novo livro */}
+            <BookForm addBook={addBook} toggleDrawer={toggleDrawer} open={drawerOpen} />
         </Container>
     );
 };
