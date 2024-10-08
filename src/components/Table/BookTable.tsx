@@ -42,17 +42,18 @@ export const BookTable = ({ books, removeBook }: Props) => {
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
-                    {/* Cabeçalho da tabela */}
+                    {/* Cabeçalho de informações da tabela */}
                     <TableHeaderInfo
                         icon={<BiShowAlt />}
                         title="Livros lidos"
                     />
 
+                    {/* Cabeçalhos de campos da tabela */}
                     <TableRow>
                         <TableCell>Livro</TableCell>
                         <TableCell>Gênero</TableCell>
                         <TableCell>Status</TableCell>
-                        <TableCell>Autor</TableCell>
+                        <TableCell>Autor(a)</TableCell>
                         <TableCell>Páginas Totais</TableCell>
                         <TableCell>Páginas Lidas</TableCell>
                         <TableCell>Ações</TableCell>
@@ -75,7 +76,10 @@ export const BookTable = ({ books, removeBook }: Props) => {
                                         height={50}
 
                                     />
-                                    {book.title}
+                                    <Box>
+                                        <Typography variant="body1" fontWeight={600}>{book.title}</Typography>
+                                        <Typography fontSize='0.85rem' color="gray">{book.type}</Typography>
+                                    </Box>
                                 </Box>
                             </TableCell>
                             <TableCell>{book.genre}</TableCell>
@@ -112,8 +116,8 @@ export const BookTable = ({ books, removeBook }: Props) => {
                                     <MenuItem
                                         sx={{ gap: 1 }}
                                         onClick={() => {
-                                            removeBook(book.title); // Chame a função removeBook com o ID do livro
-                                            handleClose(); // Feche o menu
+                                            removeBook(book.title);
+                                            handleClose();
                                         }}
                                     >
                                         <MdDelete />
