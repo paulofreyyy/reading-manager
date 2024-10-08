@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { TextField, Button, MenuItem, Box, Drawer, Typography, Tooltip } from '@mui/material';
+import { TextField, Button, Box, Drawer, Typography, Tooltip } from '@mui/material';
 import { Book } from '../entity/books.entity';
-import { StatusRadioGroup } from './Inputs/StatusRadioGroup';
+import { CustomRadioGroup } from './Inputs/CustomRadioGroup';
 
 interface Props {
     addBook: (book: Book) => void;
@@ -143,20 +143,22 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
                         required
                     />
 
-                    {/* Componente personalizado para exibição dos status */}
-                    <StatusRadioGroup status={status} setStatus={setStatus} />
+                    {/* Componente personalizado para os status */}
+                    <CustomRadioGroup
+                        label="Status"
+                        value={status}
+                        setValue={setStatus}
+                        options={['Não lido', 'Lendo', 'Concluído', 'Abandonado']}
+                    />
 
-                    <TextField
-                        select
+                    {/* Componente personalizado para os tipos de livros */}
+                    <CustomRadioGroup
                         label="Tipo de livro"
                         value={type}
-                        onChange={(e) => setType(e.target.value as 'Físico' | 'Audio-Book' | 'E-book')}
-                        fullWidth
-                    >
-                        <MenuItem value="Físico">Físico</MenuItem>
-                        <MenuItem value="Audio-Book">Audio-Book</MenuItem>
-                        <MenuItem value="E-book">E-book</MenuItem>
-                    </TextField>
+                        setValue={setType}
+                        options={['Físico', 'Audio-Book', 'E-book']}
+                    />
+
                     <TextField
                         type="number"
                         label="Páginas Totais"
