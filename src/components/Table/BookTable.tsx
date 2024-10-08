@@ -6,13 +6,15 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { FaEye } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import { getBooks } from "../../services/book.service";
 
 interface Props {
-    books: Book[]
     removeBook: (title: string) => void
 }
 
-export const BookTable = ({ books, removeBook }: Props) => {
+
+export const BookTable = ({ removeBook }: Props) => {
+    const [books] = useState<Book[]>(getBooks);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

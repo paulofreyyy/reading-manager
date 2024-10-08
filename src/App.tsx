@@ -6,6 +6,8 @@ import { BookTable } from './components/Table/BookTable';
 import { Book } from './entity/books.entity';
 import { PageTitle } from './components/PageTitle';
 import { CustomCards } from './components/Cards/CustomCards';
+import { addBook as addBookService, removeBook as removeBookService } from './services/book.service';
+
 
 const App: React.FC = () => {
     const [books, setBooks] = useState<Book[]>(() => {
@@ -20,15 +22,11 @@ const App: React.FC = () => {
     };
 
     const addBook = (book: Book) => {
-        const updatedBooks = [...books, book];
-        setBooks(updatedBooks);
-        localStorage.setItem('books', JSON.stringify(updatedBooks));
+        addBookService(book, books, setBooks);  // Usando o serviço para adicionar livros
     };
 
     const removeBook = (title: string) => {
-        const updatedBooks = books.filter(book => book.title !== title);
-        setBooks(updatedBooks);
-        localStorage.setItem('books', JSON.stringify(updatedBooks));
+        removeBookService(title, books, setBooks);  // Usando o serviço para remover livros
     };
 
     return (
@@ -57,7 +55,6 @@ const App: React.FC = () => {
 
             {/* Tabela todos os livros */}
             <BookTable
-                books={books}
                 removeBook={removeBook}
             />
 

@@ -3,7 +3,7 @@ import { Box, Card, CardContent, Typography } from "@mui/material"
 interface Props {
     cardIcon: React.ReactNode;
     title: string;
-    cardValue: string;
+    cardValue: number;
 }
 
 export const CardItem = ({ cardIcon, title, cardValue }: Props) => {
@@ -11,7 +11,7 @@ export const CardItem = ({ cardIcon, title, cardValue }: Props) => {
         <Card
             variant="outlined"
             sx={{
-                width: 320,
+                width: 280,
                 display: "flex",
                 alignItems: "center",
                 p: 2,
@@ -22,7 +22,6 @@ export const CardItem = ({ cardIcon, title, cardValue }: Props) => {
             <Box
                 sx={{
                     bgcolor: '#F8F9FE',
-                    // padding: 4,
                     borderRadius: '100%',
                     display: "flex",
                     alignItems: 'center',
@@ -36,14 +35,15 @@ export const CardItem = ({ cardIcon, title, cardValue }: Props) => {
             </Box>
             <CardContent>
                 <Typography
-                    variant="h6"
+                    fontSize='1rem'
                     color="#8F9098"
+                    noWrap
                 >
                     {title}
                 </Typography>
 
                 <Typography
-                    variant="h4"
+                    fontSize='1.5rem'
                     fontWeight={900}
                 >
                     {cardValue}
