@@ -9,3 +9,11 @@ export interface Book {
     rating?: number;
     type: 'Físico' | 'Audio-Book' | 'E-book'
 }
+
+export interface BooksToBuy {
+    title: string;
+    image?: string;
+    genre: string;
+    totalPages?: number;
+    link?: string;
+}

@@ -1,17 +1,16 @@
 import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody, Button, Menu, MenuItem, Typography, Box, TablePagination } from "@mui/material"
-import { TableHeaderInfo } from "./TableHeaderInfo";
-import { Book } from "../../entity/books.entity";
+import { Book } from "../../../entity/books.entity";
 import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
 import { FaEye } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-import { getBooks } from "../../services/book.service";
+import { getBooks } from "../../../services/book.service";
+import { TableHeaderInfo } from "../TableHeaderInfo";
 
 interface Props {
     removeBook: (title: string) => void
 }
-
 
 export const BookTable = ({ removeBook }: Props) => {
     const [books] = useState<Book[]>(getBooks);

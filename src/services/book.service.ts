@@ -1,4 +1,4 @@
-import { Book } from '../entity/books.entity';
+import { Book, BooksToBuy } from '../entity/books.entity';
 
 // Função para buscar os livros salvos no localStorage
 export const getBooks = (): Book[] => {
@@ -18,4 +18,10 @@ export const removeBook = (title: string, books: Book[], setBooks: (books: Book[
     const updatedBooks = books.filter(book => book.title !== title);
     setBooks(updatedBooks);
     localStorage.setItem('books', JSON.stringify(updatedBooks));
+};
+
+// Função para buscar os livros salvos no localStorage
+export const getBooksToBuy = (): BooksToBuy[] => {
+    const savedBooks = localStorage.getItem('book-to-buy');
+    return savedBooks ? JSON.parse(savedBooks) : [];
 };

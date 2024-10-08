@@ -5,9 +5,10 @@ import { addBook as addBookService, removeBook as removeBookService } from '../s
 import { Book } from '../entity/books.entity';
 import { PageTitle } from '../components/PageTitle';
 import { CustomCards } from '../components/Cards/CustomCards';
-import { BookTable } from '../components/Table/BookTable';
 import { NextReadings } from '../components/NextReadings/NextReadings';
 import { CreateBookForm } from '../components/BookForm';
+import { BooksToBuyTable } from '../components/Tables/WishList/BooksToBuyTable';
+import { BookTable } from '../components/Tables/BooksList/BookTable';
 
 export const Home = () => {
     const [books, setBooks] = useState<Book[]>(() => {
@@ -45,6 +46,9 @@ export const Home = () => {
 
             {/* Próximas Leituras */}
             <NextReadings />
+
+            {/* Lista de desejos */}
+            <BooksToBuyTable />
 
             {/* FAB para incluir novo livro */}
             <Box
