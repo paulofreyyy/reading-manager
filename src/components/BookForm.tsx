@@ -56,7 +56,7 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
             onClose={toggleDrawer(false)}
         >
             <form onSubmit={handleSubmit}>
-                <Box display="flex" flexDirection="column" gap={2} width={500} p={5}>
+                <Box display="flex" flexDirection="column" gap={4} width={500} p={5}>
                     <Typography variant="h6" fontWeight={600} textAlign='center' mb={2}>Novo livro</Typography>
 
                     {/* Exibe um botão de upload de imagem */}
@@ -125,7 +125,28 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         fullWidth
+                        focused
                         required
+                        slotProps={{
+                            input: {
+                                sx: {
+                                    color: "#3C3C43",
+                                    borderRadius: "14px",
+                                    fontWeight: '600',
+                                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                        borderColor: '#3C3C43',
+                                    }
+                                },
+                            },
+                            inputLabel: {
+                                sx: {
+                                    "&.Mui-focused": {
+                                        color: "#3C3C43",
+
+                                    }
+                                }
+                            },
+                        }}
                     />
 
                     <TextField
@@ -133,14 +154,63 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
                         value={author}
                         onChange={(e) => setAuthor(e.target.value)}
                         fullWidth
+                        focused
                         required
+                        slotProps={{
+                            input: {
+                                sx: {
+                                    color: "#3C3C43",
+                                    borderRadius: "14px",
+                                    fontWeight: '600',
+                                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                        borderColor: '#3C3C43',
+                                    }
+                                },
+                            },
+                            inputLabel: {
+                                sx: {
+                                    "&.Mui-focused": {
+                                        color: "#3C3C43",
+
+                                    }
+                                }
+                            },
+                        }}
                     />
-                    <TextField
+                    {/* <TextField
                         label="Gênero"
                         value={genre}
                         onChange={(e) => setGenre(e.target.value)}
                         fullWidth
+                        focused
                         required
+                        slotProps={{
+                            input: {
+                                sx: {
+                                    color: "#3C3C43",
+                                    borderRadius: "14px",
+                                    fontWeight: '600',
+                                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                        borderColor: '#3C3C43',
+                                    }
+                                },
+                            },
+                            inputLabel: {
+                                sx: {
+                                    "&.Mui-focused": {
+                                        color: "#3C3C43",
+                                    }
+                                }
+                            },
+                        }}
+                    /> */}
+
+                    {/* Componente personalizado para os status */}
+                    <CustomRadioGroup
+                        label="Gênero"
+                        value={genre ? genre : "Romance"}
+                        setValue={setGenre}
+                        options={['Romance', 'Fantasia', 'Terror', 'Ficção', 'Não Ficção', 'Distopia', 'Suspense', 'Dark Romance']}
                     />
 
                     {/* Componente personalizado para os status */}
@@ -160,22 +230,77 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
                     />
 
                     <TextField
-                        type="number"
+                        type="string"
                         label="Páginas Totais"
                         value={totalPages}
                         onChange={(e) => setTotalPages(Number(e.target.value))}
                         fullWidth
                         required
+                        focused
+                        slotProps={{
+                            input: {
+                                sx: {
+                                    color: "#3C3C43",
+                                    borderRadius: "14px",
+                                    fontWeight: '600',
+                                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                        borderColor: '#3C3C43',
+                                    }
+                                },
+                            },
+                            inputLabel: {
+                                sx: {
+                                    "&.Mui-focused": {
+                                        color: "#3C3C43",
+
+                                    }
+                                }
+                            },
+                        }}
                     />
-                    <TextField
-                        type="number"
-                        label="Página Atual"
-                        value={currentPage}
-                        onChange={(e) => setCurrentPage(Number(e.target.value))}
-                        fullWidth
-                        required
-                    />
-                    <Button type="submit" variant="contained" color="primary">
+                    {status === 'Lendo' && (
+                        <TextField
+                            type="string"
+                            label="Página Atual"
+                            value={currentPage}
+                            onChange={(e) => setCurrentPage(Number(e.target.value))}
+                            fullWidth
+                            focused
+                            required
+                            slotProps={{
+                                input: {
+                                    sx: {
+                                        color: "#3C3C43",
+                                        borderRadius: "14px",
+                                        fontWeight: '600',
+                                        "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                            borderColor: '#3C3C43',
+                                        }
+                                    },
+                                },
+                                inputLabel: {
+                                    sx: {
+                                        "&.Mui-focused": {
+                                            color: "#3C3C43",
+
+                                        }
+                                    }
+                                },
+                            }}
+                        />
+                    )}
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        size='large'
+                        sx={{
+                            bgcolor: "#6F2CFF",
+                            fontWeight: 700,
+                            borderRadius: 10,
+                            width: "70%",
+                            alignSelf: 'center'
+                        }}
+                    >
                         Adicionar Livro
                     </Button>
                 </Box>
