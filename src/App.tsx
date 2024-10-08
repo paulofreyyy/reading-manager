@@ -5,6 +5,7 @@ import { LuPlusCircle } from "react-icons/lu";
 import { BookTable } from './components/Table/BookTable';
 import { Book } from './entity/books.entity';
 import { PageTitle } from './components/PageTitle';
+import { CustomCards } from './components/Cards/CustomCards';
 
 const App: React.FC = () => {
     const [books, setBooks] = useState<Book[]>(() => {
@@ -34,6 +35,9 @@ const App: React.FC = () => {
         <Container>
             {/* Titulo da página */}
             <PageTitle user='Paulo' />
+
+            {/* Cards */}
+            <CustomCards />
 
             {/* FAB para incluir novo livro */}
             <Box
