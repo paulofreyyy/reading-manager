@@ -23,6 +23,12 @@ const App: React.FC = () => {
         localStorage.setItem('books', JSON.stringify(updatedBooks));
     };
 
+    const removeBook = (title: string) => {
+        const updatedBooks = books.filter(book => book.title !== title);
+        setBooks(updatedBooks);
+        localStorage.setItem('books', JSON.stringify(updatedBooks));
+    };
+
     return (
         <Container>
             <BookForm addBook={addBook} toggleDrawer={toggleDrawer} open={drawerOpen} />
@@ -46,6 +52,7 @@ const App: React.FC = () => {
             {/* Tabela todos os livros */}
             <BookTable
                 books={books}
+                removeBook={removeBook}
             />
         </Container>
     );

@@ -11,9 +11,10 @@ import { MdDelete } from "react-icons/md";
 
 interface Props {
     books: Book[]
+    removeBook: (title: string) => void
 }
 
-export const BookTable = ({ books }: Props) => {
+export const BookTable = ({ books, removeBook }: Props) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -76,7 +77,13 @@ export const BookTable = ({ books }: Props) => {
                                         <MdEdit />
                                         <Typography variant='body2'>Editar</Typography>
                                     </MenuItem>
-                                    <MenuItem sx={{ gap: 1 }}>
+                                    <MenuItem
+                                        sx={{ gap: 1 }}
+                                        onClick={() => {
+                                            removeBook(book.title); // Chame a função removeBook com o ID do livro
+                                            handleClose(); // Feche o menu
+                                        }}
+                                    >
                                         <MdDelete />
                                         <Typography variant='body2'>Deletar</Typography>
                                     </MenuItem>
