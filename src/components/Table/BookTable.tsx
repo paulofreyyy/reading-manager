@@ -68,7 +68,7 @@ export const BookTable = ({ removeBook }: Props) => {
                                         component='img'
                                         borderRadius={2}
                                         src={
-                                            book.image ? book.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTser9yGhcLtx7IpBgqRG3WD7TXnkczLa8fzg&s'
+                                            book.image ? book.image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpsmmND4V8TKm5UTAtJLvhqaFNgJeHKv-3rQ&s'
                                         }
                                         alt=""
                                         width={40}
