@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, MenuItem, Box, Drawer } from '@mui/material';
+import { TextField, Button, MenuItem, Box, Drawer, Typography, Tooltip } from '@mui/material';
 import { Book } from '../entity/books.entity';
 
 interface BookFormProps {
@@ -18,6 +18,22 @@ const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
     const [image, setImage] = useState<string>('');
     const [rating, setRating] = useState<number>(0);
     const [type, setType] = useState<'Físico' | 'Audio-Book' | 'E-book'>('Físico');
+
+    // Função para converter a imagem em base64 e armazená-la
+    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImage(reader.result as string); // Armazena a imagem em base64
+            };
+            reader.readAsDataURL(file); // Converte o arquivo de imagem em base64
+        }
+    };
+
+    const handleImageRemove = () => {
+        setImage("");
+    }
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -39,7 +55,66 @@ const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
             onClose={toggleDrawer(false)}
         >
             <form onSubmit={handleSubmit}>
-                <Box display="flex" flexDirection="column" gap={2}>
+                <Box display="flex" flexDirection="column" gap={2} width={345} p={5}>
+                    <Typography variant="h6" fontWeight={600} textAlign='center' mb={2}>Novo livro</Typography>
+
+                    {/* Exibe um botão de upload de imagem */}
+                    {!image ? (
+                        <Button
+                            variant="outlined"
+                            component="label"
+                            sx={{
+                                border: '1px dashed gray',
+                                color: 'gray',
+                                height: 100,
+
+                            }}
+                        >
+                            Upload da Imagem
+                            <input
+                                type="file"
+                                accept="image/*"
+                                hidden
+                                onChange={handleImageUpload}
+                            />
+                        </Button>
+                    ) : (
+                        <Box display='flex' flexDirection='column' position="relative" width={150} height={220}>
+                            <Box
+                                component="img"
+                                src={image}
+                                alt="Prévia da Imagem"
+                                width={150}
+                                height={220}
+                                borderRadius={5}
+                                sx={{
+                                    objectFit: "fill",
+                                }}
+                            />
+
+                            {/* Botão para remover a imagem */}
+                            <Tooltip title='Remover imagem' placement='top'>
+                                <Button
+                                    onClick={handleImageRemove}
+                                    size="small"
+                                    sx={{
+                                        position: 'absolute',
+                                        top: 5,
+                                        right: 5,
+                                        backgroundColor: '#d1153b',
+                                        color: 'white',
+                                        borderRadius: '50%',
+                                        minWidth: 24,
+                                        height: 24,
+                                    }}
+                                >
+                                    X
+                                </Button>
+                            </Tooltip>
+                        </Box>
+
+                    )}
+
                     <TextField
                         label="Título"
                         value={title}
@@ -47,7 +122,7 @@ const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
                         fullWidth
                         required
                     />
-                    {/* Adicionar imagem */}
+
                     <TextField
                         label="Autor"
                         value={author}
@@ -99,6 +174,7 @@ const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
                         value={currentPage}
                         onChange={(e) => setCurrentPage(Number(e.target.value))}
                         fullWidth
+                        required
                     />
                     <Button type="submit" variant="contained" color="primary">
                         Adicionar Livro
