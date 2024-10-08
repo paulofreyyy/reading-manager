@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import BookForm, { Book } from './components/BookForm';
 import BookList from './components/BookList';
 import { Box, Container, Fab } from '@mui/material';
+import { LuPlusCircle } from "react-icons/lu";
+import { BookTable } from './components/Table/BookTable';
 
 const App: React.FC = () => {
     const [books, setBooks] = useState<Book[]>(() => {
@@ -52,7 +54,7 @@ const App: React.FC = () => {
     };
 
     return (
-        <Container maxWidth="sm">
+        <Container>
             <BookForm addBook={addBook} toggleDrawer={toggleDrawer} open={drawerOpen} />
 
             {/* FAB para incluir novo livro */}
@@ -67,14 +69,18 @@ const App: React.FC = () => {
             >
 
                 <Fab color="primary" aria-label="add" onClick={toggleDrawer(true)}>
+                    <LuPlusCircle size={30} />
                 </Fab>
             </Box>
 
-            <BookList
+            {/* <BookList
                 books={books}
                 updateStatus={updateStatus}
                 updateCurrentPage={updateCurrentPage}
                 removeBook={removeBook}
+            /> */}
+            <BookTable
+                books={books}
             />
         </Container>
     );
