@@ -1,5 +1,4 @@
 import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody, Button, Menu, MenuItem, Typography, Box, TablePagination } from "@mui/material"
-import { BiShowAlt } from "react-icons/bi";
 import { TableHeaderInfo } from "./TableHeaderInfo";
 import { Book } from "../../entity/books.entity";
 import { useState } from "react";
@@ -7,7 +6,6 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { FaEye } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
-
 
 interface Props {
     books: Book[]
@@ -44,7 +42,6 @@ export const BookTable = ({ books, removeBook }: Props) => {
                 <TableHead>
                     {/* Cabeçalho de informações da tabela */}
                     <TableHeaderInfo
-                        icon={<BiShowAlt />}
                         title="Livros lidos"
                     />
 
