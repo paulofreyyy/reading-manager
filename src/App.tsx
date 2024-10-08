@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import BookForm, { Book } from './components/BookForm';
 import BookList from './components/BookList';
-import { Container, Typography } from '@mui/material';
+import { Box, Container, Fab } from '@mui/material';
 
 const App: React.FC = () => {
     const [books, setBooks] = useState<Book[]>(() => {
         const savedBooks = localStorage.getItem('books');
         return savedBooks ? JSON.parse(savedBooks) : [];
     });
+
+    const [drawerOpen, setDrawerOpen] = useState(false); // Estado para controle do Drawer
+
+    const toggleDrawer = (newOpen: boolean) => () => {
+        setDrawerOpen(newOpen);
+    };
 
     const addBook = (book: Book) => {
         const updatedBooks = [...books, book];
@@ -47,10 +53,23 @@ const App: React.FC = () => {
 
     return (
         <Container maxWidth="sm">
-            <Typography variant="h2" align="center" gutterBottom>
-                Gerenciador de Livros
-            </Typography>
-            <BookForm addBook={addBook} />
+            <BookForm addBook={addBook} toggleDrawer={toggleDrawer} open={drawerOpen} />
+
+            {/* FAB para incluir novo livro */}
+            <Box
+                position='fixed'
+                bottom={20}
+                right={20}
+                display='flex'
+                flexDirection='column'
+                gap={1}
+                alignItems='center'
+            >
+
+                <Fab color="primary" aria-label="add" onClick={toggleDrawer(true)}>
+                </Fab>
+            </Box>
+
             <BookList
                 books={books}
                 updateStatus={updateStatus}
