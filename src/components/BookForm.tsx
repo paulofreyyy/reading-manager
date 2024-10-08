@@ -12,18 +12,23 @@ const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
     const [title, setTitle] = useState<string>('');
     const [author, setAuthor] = useState<string>('');
     const [genre, setGenre] = useState<string>('');
-    const [status, setStatus] = useState<'lido' | 'não lido'>('não lido');
+    const [status, setStatus] = useState<'Concluído' | 'TBR' | 'Lendo' | 'Abandonado'>('TBR');
     const [totalPages, setTotalPages] = useState<number>(0);
     const [currentPage, setCurrentPage] = useState<number>(0);
+    const [image, setImage] = useState<string>('');
+    const [rating, setRating] = useState<number>(0);
+    const [type, setType] = useState<'Físico' | 'Audio-Book' | 'E-book'>('Físico');
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        addBook({ title, author, genre, status, totalPages, currentPage });
+        addBook({ title, author, genre, status, totalPages, currentPage, image, rating, type });
         setTitle('');
         setAuthor('');
         setGenre('');
         setTotalPages(0);
         setCurrentPage(0);
+        setImage('');
+        setRating(0);
         toggleDrawer(false);
     };
 
@@ -42,6 +47,7 @@ const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
                         fullWidth
                         required
                     />
+                    {/* Adicionar imagem */}
                     <TextField
                         label="Autor"
                         value={author}
@@ -60,11 +66,24 @@ const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
                         select
                         label="Status"
                         value={status}
-                        onChange={(e) => setStatus(e.target.value as 'lido' | 'não lido')}
+                        onChange={(e) => setStatus(e.target.value as 'Concluído' | 'TBR' | 'Lendo' | 'Abandonado')}
                         fullWidth
                     >
-                        <MenuItem value="não lido">Não Lido</MenuItem>
-                        <MenuItem value="lido">Lido</MenuItem>
+                        <MenuItem value="TBR">TBR</MenuItem>
+                        <MenuItem value="Lendo">Lendo</MenuItem>
+                        <MenuItem value="Concluído">Concluído</MenuItem>
+                        <MenuItem value="Abandonado">Abandonado</MenuItem>
+                    </TextField>
+                    <TextField
+                        select
+                        label="Tipo de livro"
+                        value={type}
+                        onChange={(e) => setType(e.target.value as 'Físico' | 'Audio-Book' | 'E-book')}
+                        fullWidth
+                    >
+                        <MenuItem value="Físico">Físico</MenuItem>
+                        <MenuItem value="Audio-Book">Audio-Book</MenuItem>
+                        <MenuItem value="E-book">E-book</MenuItem>
                     </TextField>
                     <TextField
                         type="number"

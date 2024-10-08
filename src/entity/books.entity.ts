@@ -1,8 +1,11 @@
 export interface Book {
     title: string;
     author: string;
+    image?: string;
     genre: string;
-    status: 'lido' | 'não lido' | 'lendo';
+    status: 'Concluído' | 'TBR' | 'Lendo' | 'Abandonado';
     totalPages: number;
-    currentPage: number;
+    currentPage?: number;
+    rating?: number;
+    type: 'Físico' | 'Audio-Book' | 'E-book'
 }
