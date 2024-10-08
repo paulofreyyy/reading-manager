@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TextField, Button, Box, Drawer, Typography, Tooltip } from '@mui/material';
 import { Book } from '../entity/books.entity';
 import { CustomRadioGroup } from './Inputs/CustomRadioGroup';
+import { AlertMessage } from './AlertMessage';
 
 interface Props {
     addBook: (book: Book) => void;
@@ -19,6 +20,7 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
     const [image, setImage] = useState<string>('');
     const [rating, setRating] = useState<number>(0);
     const [type, setType] = useState<'Físico' | 'Audio-Book' | 'E-book'>('Físico');
+    const [alertOpen, setAlertOpen] = useState<boolean>(false);
 
     // Função para converter a imagem em base64 e armazená-la
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,6 +40,13 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        // Verifica se totalPages é igual a 0
+        if (totalPages === 0) {
+            setAlertOpen(true);
+            return;
+        }
+
         addBook({ title, author, genre, status, totalPages, currentPage, image, rating, type });
         setTitle('');
         setAuthor('');
@@ -177,40 +186,13 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
                             },
                         }}
                     />
-                    {/* <TextField
-                        label="Gênero"
-                        value={genre}
-                        onChange={(e) => setGenre(e.target.value)}
-                        fullWidth
-                        focused
-                        required
-                        slotProps={{
-                            input: {
-                                sx: {
-                                    color: "#3C3C43",
-                                    borderRadius: "14px",
-                                    fontWeight: '600',
-                                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                                        borderColor: '#3C3C43',
-                                    }
-                                },
-                            },
-                            inputLabel: {
-                                sx: {
-                                    "&.Mui-focused": {
-                                        color: "#3C3C43",
-                                    }
-                                }
-                            },
-                        }}
-                    /> */}
 
                     {/* Componente personalizado para os status */}
                     <CustomRadioGroup
                         label="Gênero"
                         value={genre ? genre : "Romance"}
                         setValue={setGenre}
-                        options={['Romance', 'Fantasia', 'Terror', 'Ficção', 'Não Ficção', 'Distopia', 'Suspense', 'Dark Romance']}
+                        options={['Romance', 'Fantasia', 'Terror', 'Ficção', 'Não Ficção', 'Distopia', 'Suspense', 'Dark Romance', 'Autoajuda', 'Religioso', 'Biografia']}
                     />
 
                     {/* Componente personalizado para os status */}
@@ -305,6 +287,13 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
                     </Button>
                 </Box>
             </form>
+
+            {/* Componente de alerta */}
+            <AlertMessage
+                open={alertOpen}
+                message='Total de páginas do livro não pode ser 0.'
+                onClose={() => setAlertOpen(false)}
+            />
         </Drawer>
     );
 };
