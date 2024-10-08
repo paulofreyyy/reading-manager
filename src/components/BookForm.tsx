@@ -99,7 +99,6 @@ const BookForm: React.FC<BookFormProps> = ({ addBook, toggleDrawer, open }) => {
                         value={currentPage}
                         onChange={(e) => setCurrentPage(Number(e.target.value))}
                         fullWidth
-                        required
                     />
                     <Button type="submit" variant="contained" color="primary">
                         Adicionar Livro
