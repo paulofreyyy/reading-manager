@@ -8,7 +8,7 @@ interface Props {
 export const TableHeaderInfo = ({ icon, title }: Props) => {
     return (
         <TableRow>
-            <TableCell colSpan={6} sx={{ p: 0 }}>
+            <TableCell colSpan={7} sx={{ p: 0 }}>
                 <Toolbar>
                     <Typography variant="body1" fontWeight={700}>{title}</Typography>
                     <Box sx={{ ml: 'auto' }}>
