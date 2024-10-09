@@ -47,8 +47,10 @@ export const Home = () => {
             {/* Próximas Leituras */}
             <NextReadings />
 
-            {/* Lista de desejos */}
-            <BooksToBuyTable />
+            <Box display='flex' justifyContent='space-between' gap={5}>
+                {/* Lista de desejos */}
+                <BooksToBuyTable />
+            </Box>
 
             {/* FAB para incluir novo livro */}
             <Box
