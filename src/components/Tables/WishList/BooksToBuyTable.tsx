@@ -21,7 +21,7 @@ export const BooksToBuyTable = () => {
         setAnchorEl(null);
     };
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage);
     };
 
