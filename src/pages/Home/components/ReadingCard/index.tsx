@@ -3,17 +3,19 @@ import { Book } from "../../../../entity/books.entity";
 
 interface Props {
     readingBook?: Book | null;
+    onClick: () => void;
 }
 
 export const ReadingCard = ({
-    readingBook
+    readingBook,
+    onClick
 }: Props) => {
     const progress = readingBook && readingBook.currentPage
         ? (readingBook.currentPage / readingBook.totalPages) * 100
         : 0
 
     return (
-        <Box bgcolor='#FFF' p={2} borderRadius={1} component={Paper} display='flex' gap={2} alignItems='center'>
+        <Box bgcolor='#FFF' p={2} borderRadius={1} component={Paper} display='flex' gap={2} alignItems='center' onClick={onClick} sx={{ cursor: "pointer" }}>
             <Box
                 component='img'
                 borderRadius={2}

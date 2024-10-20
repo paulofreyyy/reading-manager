@@ -6,11 +6,13 @@ import { ReadingCard } from "../pages/Home/components/ReadingCard";
 interface Props {
     user: string
     books: Book[];
+    readingCardClick: () => void
 }
 
 export const PageTitle = ({
     user,
-    books
+    books,
+    readingCardClick
 
 }: Props) => {
     const [readingBook, setReadingBook] = useState<Book | null>(null)
@@ -28,6 +30,7 @@ export const PageTitle = ({
 
             <ReadingCard
                 readingBook={readingBook}
+                onClick={readingCardClick}
             />
         </Box>
     )

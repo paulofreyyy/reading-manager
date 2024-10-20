@@ -9,6 +9,7 @@ import { CreateBookForm } from '../../components/BookForm';
 import { BooksToBuyTable } from '../../components/Tables/WishList/BooksToBuyTable';
 import { BookTable } from '../../components/Tables/BooksList/BookTable';
 import { NextReadings } from './components/NextReadings/NextReadings';
+import { ReadingBookDrawer } from './components/Drawer/ReadingBookDrawer';
 
 export const Home = () => {
     const [books, setBooks] = useState<Book[]>(() => {
@@ -17,6 +18,7 @@ export const Home = () => {
     });
 
     const [drawerOpen, setDrawerOpen] = useState(false); // Estado para controle do Drawer
+    const [readingBookDrawerOpen, setReadingBookDrawerOpen] = useState(false)
 
     const toggleDrawer = (newOpen: boolean) => () => {
         setDrawerOpen(newOpen);
@@ -33,7 +35,7 @@ export const Home = () => {
     return (
         <Container>
             {/* Titulo da página */}
-            <PageTitle user='Paulo' books={books} />
+            <PageTitle user='Paulo' books={books} readingCardClick={() => setReadingBookDrawerOpen(true)} />
 
             {/* Cards */}
             <CustomCards />
@@ -80,6 +82,12 @@ export const Home = () => {
 
             {/* Formulário para criação de novo livro */}
             <CreateBookForm addBook={addBook} toggleDrawer={toggleDrawer} open={drawerOpen} />
+
+            {/* Drawer que exibe dados da leitura atual e atualiza página atual */}
+            <ReadingBookDrawer
+                open={readingBookDrawerOpen}
+                onClose={() => setReadingBookDrawerOpen(false)}
+            />
         </Container>
     );
 };
