@@ -15,7 +15,7 @@ export const CardItem = ({ cardIcon, title, cardValue }: Props) => {
                 display: "flex",
                 alignItems: "center",
                 p: 2,
-                borderLeft: '5px solid #6F2CFF'
+                borderLeft: '5px solid #014f86'
             }}
         >
 
@@ -28,7 +28,7 @@ export const CardItem = ({ cardIcon, title, cardValue }: Props) => {
                     justifyContent: "center",
                     width: 80,
                     height: 80,
-                    color: '#6F2CFF',
+                    color: '#014f86',
                 }}
             >
                 {cardIcon}

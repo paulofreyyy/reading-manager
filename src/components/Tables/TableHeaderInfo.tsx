@@ -22,10 +22,10 @@ export const TableHeaderInfo = ({ title }: Props) => {
                                     lineHeight: "1px",
                                     mr: 2,
                                     color: "#FFF",
-                                    bgcolor: '#6F2CFF',
-                                    '&:hover': {
-                                        bgcolor: '#b28eff',
-                                    },
+                                    bgcolor: "#014f86",
+                                    "&:hover": {
+                                        bgcolor: "#2a6f97",
+                                    }
                                 }}>
                                 <FiFilter />
                             </IconButton>
@@ -40,10 +40,10 @@ export const TableHeaderInfo = ({ title }: Props) => {
                                     lineHeight: "1px",
                                     mr: 2,
                                     color: "#FFF",
-                                    bgcolor: '#6F2CFF',
-                                    '&:hover': {
-                                        bgcolor: '#b28eff',
-                                    },
+                                    bgcolor: "#014f86",
+                                    "&:hover": {
+                                        bgcolor: "#2a6f97",
+                                    }
                                 }}>
                                 <BiShowAlt />
                             </IconButton>

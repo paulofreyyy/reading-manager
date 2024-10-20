@@ -33,8 +33,8 @@ export const CustomRadioGroup = <T extends string>({ label, value, setValue, opt
                             padding: '8px 16px',
                             cursor: 'pointer',
                             userSelect: 'none',
-                            borderColor: value === option ? '#6F2CFF' : '#E2DFDF',
-                            color: value === option ? '#6F2CFF' : 'black',
+                            borderColor: value === option ? '#014f86' : '#E2DFDF',
+                            color: value === option ? '#014f86' : 'black',
                             position: 'relative',
                         }}
                     >
@@ -45,7 +45,7 @@ export const CustomRadioGroup = <T extends string>({ label, value, setValue, opt
                                 right={-5}
                                 zIndex={1000}
                                 bgcolor={'#FFF'}
-                                color="#6F2CFF"
+                                color="#014f86"
                             >
                                 <FaRegCircleCheck />
                             </Box>

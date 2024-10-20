@@ -276,7 +276,7 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
                         variant="contained"
                         size='large'
                         sx={{
-                            bgcolor: "#6F2CFF",
+                            bgcolor: "#014f86",
                             fontWeight: 700,
                             borderRadius: 10,
                             width: "70%",

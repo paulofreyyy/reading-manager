@@ -63,8 +63,18 @@ export const Home = () => {
                 alignItems='center'
             >
 
-                <Fab color="primary" aria-label="add" onClick={toggleDrawer(true)}>
-                    <LuPlusCircle size={30} />
+                <Fab
+                    aria-label="add"
+                    onClick={toggleDrawer(true)}
+                    sx={{
+                        borderRadius: 5,
+                        bgcolor: "#014f86",
+                        "&:hover": {
+                            bgcolor: "#2a6f97",
+                        }
+                    }}
+                >
+                    <LuPlusCircle size={30} color='#FFF' />
                 </Fab>
             </Box>
 
