@@ -44,6 +44,7 @@ export const BookTable = ({ removeBook }: Props) => {
                     {/* Cabeçalho de informações da tabela */}
                     <TableHeaderInfo
                         title="Livros"
+                        books={books}
                     />
 
                     {/* Cabeçalhos de campos da tabela */}
@@ -60,7 +61,7 @@ export const BookTable = ({ removeBook }: Props) => {
 
                 <TableBody>
                     {paginatedBooks.map((book) => (
-                        <TableRow>
+                        <TableRow key={book.title}>
                             <TableCell>
                                 <Box display='flex' alignItems='center' gap={2}>
                                     <Box

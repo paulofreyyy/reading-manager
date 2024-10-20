@@ -3,9 +3,11 @@ import { BiShowAlt } from "react-icons/bi";
 import { FiFilter } from "react-icons/fi";
 import { FiltersPopover } from "./BooksList/Filters";
 import { useState } from "react";
+import { Book } from "../../entity/books.entity";
 
 interface Props {
     title: string;
+    books: Book[]
 }
 
 export const TableHeaderInfo = ({ title }: Props) => {

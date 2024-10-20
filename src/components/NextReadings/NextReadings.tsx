@@ -21,6 +21,7 @@ export const NextReadings = () => {
             <Stack direction='row' spacing={2}>
                 {books.map(book => (
                     <NextReadingBook
+                        key={book.title}
                         image={book.image}
                         title={book.title}
                         author={book.author}
