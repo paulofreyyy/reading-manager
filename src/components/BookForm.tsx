@@ -13,7 +13,7 @@ interface Props {
 export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
     const [title, setTitle] = useState<string>('');
     const [author, setAuthor] = useState<string>('');
-    const [genre, setGenre] = useState<string>('');
+    const [genre, setGenre] = useState<string>('Romance');
     const [status, setStatus] = useState<'Concluído' | 'Não lido' | 'Lendo' | 'Abandonado'>('Não lido');
     const [totalPages, setTotalPages] = useState<number>(0);
     const [currentPage, setCurrentPage] = useState<number>(0);
@@ -21,6 +21,7 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
     const [rating, setRating] = useState<number>(0);
     const [type, setType] = useState<'Físico' | 'Audio-Book' | 'E-book'>('Físico');
     const [alertOpen, setAlertOpen] = useState<boolean>(false);
+
 
     // Função para converter a imagem em base64 e armazená-la
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +48,7 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
             return;
         }
 
+        console.log(status, genre)
         addBook({ title, author, genre, status, totalPages, currentPage, image, rating, type });
         setTitle('');
         setAuthor('');
@@ -200,7 +202,7 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
                     {/* Componente personalizado para os status */}
                     <CustomRadioGroup
                         label="Gênero"
-                        value={genre ? genre : "Romance"}
+                        value={genre}
                         setValue={setGenre}
                         options={['Romance', 'Fantasia', 'Terror', 'Ficção', 'Não Ficção', 'Distopia', 'Suspense', 'Dark Romance', 'Autoajuda', 'Religioso', 'Biografia']}
                     />

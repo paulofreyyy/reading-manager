@@ -1,4 +1,4 @@
-import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody, Button, Menu, MenuItem, Typography, Box, TablePagination } from "@mui/material"
+import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody, Button, Menu, MenuItem, Typography, Box, TablePagination, Chip } from "@mui/material"
 import { Book } from "../../../entity/books.entity";
 import { useState } from "react";
 import { SlOptionsVertical } from "react-icons/sl";
@@ -81,7 +81,10 @@ export const BookTable = ({ removeBook }: Props) => {
                                 </Box>
                             </TableCell>
                             <TableCell>{book.genre}</TableCell>
-                            <TableCell>{book.status}</TableCell>
+                            <TableCell>
+                                <Chip label={book.status} sx={{ width: 120, fontWeight: 600 }} />
+
+                            </TableCell>
                             <TableCell>{book.author}</TableCell>
                             <TableCell>{book.totalPages}</TableCell>
                             <TableCell>{book.currentPage}</TableCell>
