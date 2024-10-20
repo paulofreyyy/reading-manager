@@ -58,13 +58,23 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
         toggleDrawer(false);
     };
 
+    const handleReset = () => {
+        setTitle('');
+        setAuthor('');
+        setGenre('');
+        setTotalPages(0);
+        setCurrentPage(0);
+        setImage('');
+        setRating(0);
+    }
+
     return (
         <Drawer
             anchor='right'
             open={open}
             onClose={toggleDrawer(false)}
         >
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} onReset={handleReset}>
                 <Box display="flex" flexDirection="column" gap={4} width={500} p={5}>
                     <Typography variant="h6" fontWeight={600} textAlign='center' mb={2}>Novo livro</Typography>
 
@@ -271,20 +281,44 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
                             }}
                         />
                     )}
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        size='large'
-                        sx={{
-                            bgcolor: "#014f86",
-                            fontWeight: 700,
-                            borderRadius: 10,
-                            width: "70%",
-                            alignSelf: 'center'
-                        }}
-                    >
-                        Adicionar Livro
-                    </Button>
+                    <Box display='flex' gap={5}>
+                        <Button
+                            type="reset"
+                            variant="contained"
+                            size='large'
+                            sx={{
+                                fontWeight: 700,
+                                borderRadius: 10,
+                                width: "70%",
+                                alignSelf: 'center',
+                                bgcolor: "#860101",
+                                '&:hover': {
+                                    bgcolor: "#972a2a",
+                                }
+
+                            }}
+                            onClick={toggleDrawer(false)}
+                        >
+                            Cancelar
+                        </Button>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            size='large'
+                            sx={{
+                                fontWeight: 700,
+                                borderRadius: 10,
+                                width: "70%",
+                                alignSelf: 'center',
+                                bgcolor: "#014f86",
+                                "&:hover": {
+                                    bgcolor: "#2a6f97",
+                                }
+                            }}
+                        >
+                            Adicionar
+                        </Button>
+                    </Box>
                 </Box>
             </form>
 
