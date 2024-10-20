@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, Container, Fab } from '@mui/material';
 import { LuPlusCircle } from "react-icons/lu";
-import { addBook as addBookService, removeBook as removeBookService } from '../../services/book.service';
+import { addBook as addBookService, removeBook as removeBookService, updateBook } from '../../services/book.service';
 import { Book } from '../../entity/books.entity';
 import { PageTitle } from '../../components/PageTitle';
 import { CustomCards } from '../../components/Cards/CustomCards';
@@ -17,7 +17,12 @@ export const Home = () => {
         return savedBooks ? JSON.parse(savedBooks) : [];
     });
 
-    const [drawerOpen, setDrawerOpen] = useState(false); // Estado para controle do Drawer
+    const [readingBook] = useState<Book | null>(() => {
+        const fetchReadingBook = books.find(book => book.status === 'Lendo');
+        return fetchReadingBook ? fetchReadingBook : null;
+    })
+
+    const [drawerOpen, setDrawerOpen] = useState(false); 
     const [readingBookDrawerOpen, setReadingBookDrawerOpen] = useState(false)
 
     const toggleDrawer = (newOpen: boolean) => () => {
@@ -25,17 +30,20 @@ export const Home = () => {
     };
 
     const addBook = (book: Book) => {
-        addBookService(book, books, setBooks);  // Usando o serviço para adicionar livros
+        addBookService(book, books, setBooks);
+    };
+    const updatedBook = (book: Book) => {
+        updateBook(book, books, setBooks);  
     };
 
     const removeBook = (title: string) => {
-        removeBookService(title, books, setBooks);  // Usando o serviço para remover livros
+        removeBookService(title, books, setBooks); 
     };
 
     return (
         <Container>
             {/* Titulo da página */}
-            <PageTitle user='Paulo' books={books} readingCardClick={() => setReadingBookDrawerOpen(true)} />
+            <PageTitle user='Paulo' readingBook={readingBook} readingCardClick={() => setReadingBookDrawerOpen(true)} />
 
             {/* Cards */}
             <CustomCards />
@@ -87,6 +95,10 @@ export const Home = () => {
             <ReadingBookDrawer
                 open={readingBookDrawerOpen}
                 onClose={() => setReadingBookDrawerOpen(false)}
+                readingBook={readingBook}
+                books={books}
+                setBooks={setBooks}
+                updateBook={updatedBook}
             />
         </Container>
     );

@@ -30,7 +30,7 @@ export const ReadingCard = ({
             <Box >
                 <Typography mb={1}>{readingBook?.title}</Typography>
                 <LinearProgress variant="determinate" value={progress} />
-                <Typography display='flex' justifyContent='end'>{progress.toFixed(2)}%</Typography>
+                <Typography display='flex' justifyContent='end' fontWeight={600}>{progress.toFixed(2)}%</Typography>
             </Box>
         </Box>
     )
