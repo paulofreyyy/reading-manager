@@ -33,7 +33,7 @@ export const Home = () => {
     return (
         <Container>
             {/* Titulo da página */}
-            <PageTitle user='Paulo' />
+            <PageTitle user='Paulo' books={books} />
 
             {/* Cards */}
             <CustomCards />
