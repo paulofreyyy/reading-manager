@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { Box, Container, Fab } from '@mui/material';
 import { LuPlusCircle } from "react-icons/lu";
-import { addBook as addBookService, removeBook as removeBookService } from '../services/book.service';
-import { Book } from '../entity/books.entity';
-import { PageTitle } from '../components/PageTitle';
-import { CustomCards } from '../components/Cards/CustomCards';
-import { NextReadings } from '../components/NextReadings/NextReadings';
-import { CreateBookForm } from '../components/BookForm';
-import { BooksToBuyTable } from '../components/Tables/WishList/BooksToBuyTable';
-import { BookTable } from '../components/Tables/BooksList/BookTable';
+import { addBook as addBookService, removeBook as removeBookService } from '../../services/book.service';
+import { Book } from '../../entity/books.entity';
+import { PageTitle } from '../../components/PageTitle';
+import { CustomCards } from '../../components/Cards/CustomCards';
+import { CreateBookForm } from '../../components/BookForm';
+import { BooksToBuyTable } from '../../components/Tables/WishList/BooksToBuyTable';
+import { BookTable } from '../../components/Tables/BooksList/BookTable';
+import { NextReadings } from './components/NextReadings/NextReadings';
 
 export const Home = () => {
     const [books, setBooks] = useState<Book[]>(() => {

@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from "@mui/material"
 import { NextReadingBook } from "./NextReadingBook"
 import { useEffect, useState } from "react";
-import { Book } from "../../entity/books.entity";
-import { getBooks } from "../../services/book.service";
+import { getBooks } from "../../../../services/book.service";
+import { Book } from "../../../../entity/books.entity";
 
 export const NextReadings = () => {
     const [books, setBooks] = useState<Book[]>([]);

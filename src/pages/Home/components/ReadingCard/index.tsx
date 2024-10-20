@@ -1,5 +1,5 @@
 import { Box, LinearProgress, Paper, Typography } from "@mui/material"
-import { Book } from "../../../entity/books.entity"
+import { Book } from "../../../../entity/books.entity";
 
 interface Props {
     readingBook?: Book | null;
@@ -13,7 +13,7 @@ export const ReadingCard = ({
         : 0
 
     return (
-        <Box bgcolor='#FFF' p={2} borderRadius={2} component={Paper} display='flex' gap={2} alignItems='center'>
+        <Box bgcolor='#FFF' p={2} borderRadius={1} component={Paper} display='flex' gap={2} alignItems='center'>
             <Box
                 component='img'
                 borderRadius={2}

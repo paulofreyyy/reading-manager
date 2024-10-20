@@ -7,7 +7,7 @@ import { Book } from "../../entity/books.entity";
 
 interface Props {
     title: string;
-    books: Book[]
+    books?: Book[]
 }
 
 export const TableHeaderInfo = ({ title }: Props) => {

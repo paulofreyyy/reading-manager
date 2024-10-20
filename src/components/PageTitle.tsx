@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material"
-import { ReadingCard } from "../pages/components/ReadingCard"
 import { Book } from "../entity/books.entity"
 import { useEffect, useState } from "react";
+import { ReadingCard } from "../pages/Home/components/ReadingCard";
 
 interface Props {
     user: string
