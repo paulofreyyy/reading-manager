@@ -14,7 +14,7 @@ export const NextReadingBook = ({ image, title, author }: Props) => {
                 src={image ? image : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSpsmmND4V8TKm5UTAtJLvhqaFNgJeHKv-3rQ&s'}
                 borderRadius={8}
                 width={150}
-                height={180}
+                height={200}
                 sx={{
                     objectFit: 'cover'
                 }}

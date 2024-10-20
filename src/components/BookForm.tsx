@@ -122,8 +122,8 @@ export const CreateBookForm = ({ addBook, toggleDrawer, open }: Props) => {
                                             size="small"
                                             sx={{
                                                 position: 'absolute',
-                                                top: 5,
-                                                right: 5,
+                                                top: -5,
+                                                right: -5,
                                                 backgroundColor: '#d1153b',
                                                 color: 'white',
                                                 borderRadius: '50%',
